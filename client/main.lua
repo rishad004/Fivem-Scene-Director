@@ -9,7 +9,7 @@ RegisterCommand('director', function()
     SendNUIMessage({ action = "toggle", state = uiOpen })
 end, false)
 
-RegisterKeyMapping('director', 'Open Scene Director', 'keyboard', 'F5')
+RegisterKeyMapping('director', 'Open Scene Director', 'keyboard', 'F9')
 
 -- Close UI with Escape
 RegisterNUICallback('closeUI', function(_, cb)

@@ -34,7 +34,7 @@ Create, control, and replay in-game scenes with custom actors, camera movement, 
 - Smooth actor movement and camera interpolation during playback
 
 ### 🧩 UI (No-Command Design)
-- Open/close with **F5** (or `/director`)
+- Open/close with **F9** (or `/director`)
 - **Escape** closes the UI from anywhere
 - All actions — freecam, actor select, spawn, animations, timeline, save/load — are accessible from the panel
 - Inline JSON import via a text area (no prompts)
@@ -99,7 +99,7 @@ No manual SQL setup required.
 
 | Key | Action |
 |-----|--------|
-| `F5` | Open / close Scene Director UI |
+| `F9` | Open / close Scene Director UI |
 | `Escape` | Close UI |
 
 ### Freecam (activate from UI button or F6)
@@ -124,7 +124,7 @@ No manual SQL setup required.
 
 ## 🔁 Basic Workflow
 
-1. Press **F5** to open the UI
+1. Press **F9** to open the UI
 2. Enter a Character ID and click **Spawn**
 3. Walk near the actor and click **🎯 Select Nearest Actor**
 4. Use WASD/Q/E to position them
