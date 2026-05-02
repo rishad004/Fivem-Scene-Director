@@ -1,9 +1,351 @@
-body {
-    background: rgba(0,0,0,0.5);
-    color: white;
-    font-family: sans-serif;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    overflow: hidden;
+    pointer-events: none;
+    font-size: 13px;
+}
+
+#app {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    background: rgba(12, 12, 14, 0.93);
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+    border-right: 1px solid #2a2a2a;
+}
+
+/* ---- Header ---- */
+.header {
+    padding: 12px 14px 10px;
+    border-bottom: 1px solid #222;
+    background: rgba(20, 20, 24, 0.95);
+}
+
+.header h2 {
+    font-size: 15px;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ---- Sections ---- */
+section {
+    padding: 10px 14px;
+    border-bottom: 1px solid #1e1e1e;
+    overflow-y: auto;
+}
+
+h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+/* ---- Info / Hints ---- */
+.info-label {
+    font-size: 11px;
+    color: #5a9fd4;
+    margin: 4px 0;
+}
+
+.hint {
+    font-size: 10px;
+    color: #555;
+    line-height: 1.5;
+    margin-top: 4px;
+}
+
+/* ---- Buttons ---- */
 button {
-    margin: 5px;
-    padding: 10px;
+    width: 100%;
+    padding: 7px 10px;
+    margin: 3px 0;
+    background: #1e1e22;
+    border: 1px solid #2e2e35;
+    color: #ddd;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 12px;
+    text-align: left;
+    transition: background 0.15s;
+}
+
+button:hover {
+    background: #2a2a32;
+    color: #fff;
+    border-color: #444;
+}
+
+button:active {
+    background: #333;
+}
+
+.category-btn {
+    background: #1a1f2e;
+    border-color: #2b3550;
+    color: #7ba7e0;
+}
+
+.category-btn:hover {
+    background: #222b3f;
+    color: #a8c8ff;
+}
+
+/* ---- Inputs ---- */
+input[type="number"],
+input[type="text"],
+input[placeholder] {
+    width: 100%;
+    padding: 6px 8px;
+    background: #151518;
+    border: 1px solid #2a2a30;
+    color: #ccc;
+    border-radius: 4px;
+    font-size: 12px;
+    margin: 3px 0;
+    outline: none;
+}
+
+input:focus {
+    border-color: #4a6fa5;
+}
+
+/* ---- Rows ---- */
+.row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin: 3px 0;
+}
+
+.row button {
+    width: auto;
+    flex: 0 0 auto;
+    padding: 6px 10px;
+}
+
+.row input {
+    flex: 1;
+    margin: 0;
+}
+
+.search-row {
+    margin-top: 6px;
+}
+
+/* ---- Timeline steps ---- */
+#timeline {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 6px;
+}
+
+.timeline-step {
+    background: #181820;
+    border: 1px solid #252530;
+    border-radius: 4px;
+    padding: 7px 9px;
+    margin-bottom: 4px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.timeline-step span {
+    color: #bbb;
+}
+
+.step-actions {
+    display: flex;
+    gap: 4px;
+    margin-top: 3px;
+}
+
+.step-actions button {
+    width: auto;
+    flex: 1;
+    padding: 4px 6px;
+    font-size: 11px;
+    margin: 0;
+}
+
+/* ---- Scene cards ---- */
+#sceneList {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 6px;
+}
+
+.scene-card {
+    background: #181820;
+    border: 1px solid #252530;
+    border-radius: 4px;
+    padding: 7px 9px;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.scene-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    overflow: hidden;
+}
+
+.scene-info b {
+    color: #e0e0e0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+}
+
+.scene-info small {
+    color: #555;
+    font-size: 10px;
+}
+
+.scene-actions {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.scene-actions button {
+    width: auto;
+    padding: 4px 8px;
+    font-size: 11px;
+    margin: 0;
+}
+
+/* ---- Empty states ---- */
+.empty-msg {
+    color: #444;
+    font-size: 11px;
+    padding: 8px 0;
+    text-align: center;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+
+/* ---- Active category button ---- */
+.category-btn.active {
+    background: #222b3f;
+    color: #a8c8ff;
+    border-color: #4a6fa5;
+}
+
+/* ---- Accent buttons ---- */
+.btn-accent {
+    background: #1a2a40;
+    border-color: #2b4570;
+    color: #7ba7e0;
+}
+
+.btn-accent:hover {
+    background: #1e3354;
+    color: #a8c8ff;
+}
+
+/* ---- Step header ---- */
+.step-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #bbb;
+}
+
+/* ---- Step duration / edit rows ---- */
+.step-duration-row,
+.step-edit-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-top: 3px;
+}
+
+.step-ms {
+    color: #888;
+    font-size: 11px;
+}
+
+.step-edit-row input {
+    flex: 1;
+    margin: 0;
+    padding: 4px 6px;
+    font-size: 11px;
+}
+
+/* ---- Import textarea ---- */
+#importArea {
+    margin: 4px 0;
+}
+
+#importJson {
+    width: 100%;
+    background: #151518;
+    border: 1px solid #2a2a30;
+    color: #ccc;
+    border-radius: 4px;
+    font-size: 11px;
+    padding: 6px 8px;
+    resize: vertical;
+    outline: none;
+    font-family: monospace;
+    margin-bottom: 4px;
+}
+
+#importJson:focus {
+    border-color: #4a6fa5;
+}
+
+/* ---- Toast notification ---- */
+.sd-toast {
+    position: fixed;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1e1e28;
+    border: 1px solid #3a3a50;
+    color: #ddd;
+    padding: 7px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    pointer-events: none;
+    transition: opacity 0.4s;
+    z-index: 9999;
+    white-space: nowrap;
+}
+
+.sd-toast.success {
+    border-color: #3a6a3a;
+    color: #8fcf8f;
+}
+
+.sd-toast.error {
+    border-color: #6a3a3a;
+    color: #cf8f8f;
 }

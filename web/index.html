@@ -1,14 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="app">
-    <button onclick="spawn()">Spawn Actor</button>
-    <button onclick="play()">Play Timeline</button>
-</div>
+    <div id="app" style="display:none">
+        <div class="header">
+            <h2>🎬 Scene Director</h2>
+        </div>
 
-<script src="app.js"></script>
+        <!-- ACTORS -->
+        <section>
+            <h3>🎭 Actors</h3>
+            <div class="row">
+                <input id="charId" type="number" min="1" placeholder="Character ID" />
+                <button class="btn-accent" onclick="spawn()">Spawn</button>
+            </div>
+            <button onclick="createCharacter()">✏️ Create Character</button>
+            <button onclick="selectNearestActor()">🎯 Select Nearest Actor</button>
+            <button onclick="toggleFreecam()">📷 Toggle Freecam</button>
+            <div id="actorCount" class="info-label">Actors in scene: 0</div>
+            <div id="selectedActorLabel" class="info-label" style="color:#8fcf8f;">No actor selected</div>
+            <div class="hint">
+                <b>Actor controls</b> (when actor selected &amp; freecam OFF):<br>
+                W/S = move &nbsp; A/D = rotate &nbsp; Q/E = up/down<br>
+                <b>Freecam</b>: Hold RMB to look &nbsp; WASD = fly &nbsp; Q/E = up/down &nbsp; Scroll = speed
+            </div>
+        </section>
+
+        <!-- ANIMATIONS -->
+        <section>
+            <h3>🎞️ Animations</h3>
+            <div id="categories"></div>
+            <div id="animations"></div>
+        </section>
+
+        <!-- TIMELINE -->
+        <section>
+            <h3>⏱️ Timeline</h3>
+            <div class="row">
+                <input id="stepDuration" type="number" min="100" placeholder="Duration (ms)" value="3000" />
+                <button class="btn-accent" onclick="addStep()">➕ Add</button>
+            </div>
+            <div class="row">
+                <button onclick="play()">▶ Play Timeline</button>
+            </div>
+            <div id="timeline"></div>
+        </section>
+
+        <!-- SCENES -->
+        <section>
+            <h3>💾 Scenes</h3>
+            <div class="row">
+                <input id="sceneName" type="text" placeholder="Scene name..." />
+                <button class="btn-accent" onclick="saveScene()">💾 Save</button>
+            </div>
+            <div id="importArea" style="display:none; margin:4px 0;">
+                <textarea id="importJson" placeholder="Paste scene JSON here..." rows="4"></textarea>
+                <div class="row">
+                    <button onclick="confirmImport()">✅ Import</button>
+                    <button onclick="cancelImport()">✖ Cancel</button>
+                </div>
+            </div>
+            <button onclick="toggleImport()">📋 Import from JSON</button>
+            <div class="row search-row">
+                <input id="sceneSearch" placeholder="Search scenes..." oninput="filterScenes()" />
+                <button onclick="loadScenes()">🔄</button>
+            </div>
+            <div id="sceneList"></div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
