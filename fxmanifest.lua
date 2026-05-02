@@ -1,9 +1,9 @@
 fx_version 'cerulean'
 game 'gta5'
 
-name 'fivem-scene-director'
-description 'Standalone Scene Director with Character Creator'
+name 'scene-director'
 author 'rishad004'
+description 'Cinematic Scene Director'
 
 ui_page 'web/index.html'
 
@@ -16,7 +16,9 @@ files {
 client_scripts {
     'client/main.lua',
     'client/camera.lua',
-    'client/character.lua'
+    'client/actors.lua',
+    'client/animation.lua',
+    'client/timeline.lua'
 }
 
 server_scripts {

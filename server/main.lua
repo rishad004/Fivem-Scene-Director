@@ -1,20 +1,40 @@
-local characters = {}
+local function runMigrations()
+    print('[Scene Director] Running database migrations...')
 
-RegisterNetEvent('scene-director:saveCharacter', function(appearance)
-    local src = source
-    MySQL.insert('INSERT INTO scene_characters (appearance) VALUES (?)', {json.encode(appearance)})
+    MySQL.query([[
+        CREATE TABLE IF NOT EXISTS scene_characters (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            appearance LONGTEXT
+        );
+    ]])
+
+    MySQL.query([[
+        CREATE TABLE IF NOT EXISTS scene_scenes (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(100),
+            data LONGTEXT
+        );
+    ]])
+
+    print('[Scene Director] Database ready.')
+end
+
+AddEventHandler('onResourceStart', function(resource)
+    if resource == GetCurrentResourceName() then
+        Wait(500) -- give oxmysql time to init
+        runMigrations()
+    end
 end)
 
-RegisterNetEvent('scene-director:getCharacters', function()
+-- Existing logic
+RegisterNetEvent('scene:getChar', function(id)
     local src = source
-    local result = MySQL.query.await('SELECT * FROM scene_characters', {})
-    TriggerClientEvent('scene-director:sendCharacters', src, result)
-end)
+    local result = MySQL.single.await(
+        'SELECT * FROM scene_characters WHERE id = ?', 
+        {id}
+    )
 
-RegisterNetEvent('scene-director:loadCharacter', function(id)
-    local src = source
-    local result = MySQL.single.await('SELECT * FROM scene_characters WHERE id = ?', {id})
     if result then
-        TriggerClientEvent('scene-director:applyCharacter', src, json.decode(result.appearance))
+        TriggerClientEvent('scene:spawnChar', src, json.decode(result.appearance))
     end
 end)
